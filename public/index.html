@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Scraper Lab</title>
+    <meta
+      name="description"
+      content="Aplicacao didatica de scraping com Node.js que busca quotes reais e exibe o resultado em uma interface moderna."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background-orb background-orb-left"></div>
+    <div class="background-orb background-orb-right"></div>
+
+    <main class="page-shell">
+      <section class="hero-panel glass-card">
+        <div class="eyebrow">Node.js + Express + Cheerio</div>
+        <h1 class="hero-title">Transforme uma rota de scraping em uma experiencia real de uso.</h1>
+        <p class="hero-description">
+          Esta interface mostra o fluxo completo para um usuario final: entender o que a aplicacao
+          faz, disparar o scraping com um clique e visualizar quotes organizadas por autor e tags.
+        </p>
+
+        <div class="hero-actions">
+          <button id="fetch-quotes-button" class="primary-button" type="button">
+            Buscar Quotes
+          </button>
+          <a class="secondary-link" href="/api" target="_blank" rel="noreferrer">
+            Ver indice tecnico da API
+          </a>
+        </div>
+
+        <div class="hero-highlights">
+          <article class="highlight-card">
+            <span class="highlight-label">Fluxo do usuario</span>
+            <p>Abrir a pagina, entender o proposito, clicar no botao e receber os resultados.</p>
+          </article>
+
+          <article class="highlight-card">
+            <span class="highlight-label">Fonte dos dados</span>
+            <p>A API consulta <strong>quotes.toscrape.com</strong> e devolve o conteudo em JSON.</p>
+          </article>
+
+          <article class="highlight-card">
+            <span class="highlight-label">Aprendizado pratico</span>
+            <p>Voce observa clique, requisicao, loading, tratamento de erro e renderizacao.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace-grid">
+        <article class="glass-card flow-panel">
+          <h2>Como o usuario interage</h2>
+          <ol class="flow-list">
+            <li>O usuario entra na pagina e entende o objetivo da ferramenta.</li>
+            <li>Ele clica em <strong>Buscar Quotes</strong> para iniciar o scraping.</li>
+            <li>A interface mostra um estado de carregamento enquanto chama a API.</li>
+            <li>Quando os dados chegam, as quotes aparecem em cards organizados.</li>
+            <li>Se houver falha, a interface mostra um erro claro e orienta o proximo passo.</li>
+          </ol>
+        </article>
+
+        <article class="glass-card status-panel">
+          <div class="status-header">
+            <div>
+              <p class="section-label">Painel de resultado</p>
+              <h2>Estado atual da busca</h2>
+            </div>
+            <span id="request-badge" class="request-badge">Aguardando acao</span>
+          </div>
+
+          <div id="feedback-box" class="feedback-box feedback-idle">
+            Clique no botao para iniciar a primeira busca de quotes.
+          </div>
+
+          <div class="stats-grid" id="stats-grid" aria-live="polite">
+            <div class="stat-card">
+              <span class="stat-label">Total encontrado</span>
+              <strong id="quotes-total">0</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Fonte</span>
+              <strong id="quotes-source">Nao consultada</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="results-section">
+        <div class="results-header">
+          <div>
+            <p class="section-label">Resultado do scraping</p>
+            <h2>Quotes encontradas</h2>
+          </div>
+          <p class="results-hint">Cada card abaixo e renderizado a partir do JSON retornado pela API.</p>
+        </div>
+
+        <div
+          id="loading-state"
+          class="glass-card loading-state hidden"
+          role="status"
+          aria-live="polite"
+        >
+          <div class="spinner" aria-hidden="true"></div>
+          <div>
+            <strong>Buscando quotes...</strong>
+            <p>A interface esta aguardando a resposta de <code>/api/scraping/quotes</code>.</p>
+          </div>
+        </div>
+
+        <div id="error-state" class="glass-card error-state hidden" role="alert"></div>
+
+        <div id="empty-state" class="glass-card empty-state">
+          Nenhuma quote foi carregada ainda. Use o botao acima para testar o fluxo completo.
+        </div>
+
+        <div id="quotes-grid" class="quotes-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
