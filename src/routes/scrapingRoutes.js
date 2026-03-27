@@ -1,6 +1,9 @@
 import { Router } from "express";
 
-import { getQuotesScraping } from "../controllers/scrapingController.js";
+import {
+  getQuotesScraping,
+  getVisioneScraping
+} from "../controllers/scrapingController.js";
 
 const scrapingRoutes = Router();
 
@@ -8,5 +11,6 @@ const scrapingRoutes = Router();
 // Esta e a rota principal de estudo do projeto.
 // Ela aciona o fluxo completo: requisicao HTTP -> service -> scraping -> JSON.
 scrapingRoutes.get("/scraping/quotes", getQuotesScraping);
+scrapingRoutes.get("/scraping/visione", getVisioneScraping);
 
 export default scrapingRoutes;

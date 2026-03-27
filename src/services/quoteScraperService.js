@@ -13,7 +13,7 @@ export const scrapeQuotes = async () => {
   try {
     // Axios baixa o HTML bruto da pagina.
     // E como pedir para um entregador trazer o jornal inteiro para sua mesa.
-    const response = await axios.get(environment.scrapingBaseUrl, {
+    const response = await axios.get(environment.scrapingQuotesBaseUrl, {
       timeout: 10000,
       headers: {
         // Alguns sites bloqueiam requisicoes "sem cara de navegador".
@@ -84,7 +84,7 @@ export const scrapeQuotes = async () => {
 
   return {
     success: true,
-    source: environment.scrapingBaseUrl,
+    source: environment.scrapingQuotesBaseUrl,
     total: quotes.length,
     data: quotes
   };

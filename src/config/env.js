@@ -12,5 +12,10 @@ dotenv.config();
 export const environment = {
   port: Number(process.env.PORT) || 3000,
   nodeEnv: process.env.NODE_ENV || "development",
-  scrapingBaseUrl: process.env.SCRAPING_BASE_URL || "https://quotes.toscrape.com/"
+  scrapingQuotesBaseUrl:
+    process.env.SCRAPING_QUOTES_BASE_URL ||
+    process.env.SCRAPING_BASE_URL ||
+    "https://quotes.toscrape.com/",
+  scrapingVisioneBaseUrl:
+    process.env.SCRAPING_VISIONE_BASE_URL || "https://www.visione-web.com/"
 };
